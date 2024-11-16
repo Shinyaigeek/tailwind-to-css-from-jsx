@@ -1,0 +1,66 @@
+export const snapshot = {};
+
+snapshot[`generated function should return CSS content from valid Tailwind token 1`] = `
+background-color: rgb(59,130,246); 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 2`] = `
+color: rgb(239,68,68); 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 3`] = `
+padding: 1rem; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 4`] = `
+margin: 1rem; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 5`] = `
+border-radius: 0.5rem; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 6`] = `
+box-shadow: 0 0 #0000, 0 0 #0000, 0 10px 15px -3px rgb(0,0,0,0.1), 0 4px 6px -4px rgb(0,0,0,0.1); 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 7`] = `
+background-color: rgb(29,78,216); 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 8`] = `
+outline: 2px solid transparent; 
+outline-offset: 2px; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 9`] = `
+box-shadow: 0 0 0 0px #fff,   0 0 0 calc(2px + 0px) rgb(59,130,246,0.5), 0 0 #0000; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 10`] = `
+text-align: center; 
+
+@media(min-width: 640px) {
+	text-align: center; 
+}
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 11`] = `
+width: 50%; 
+
+`;
+
+snapshot[`generated function should return CSS content from valid Tailwind token 12`] = `
+width: 12px; 
+
+`;
