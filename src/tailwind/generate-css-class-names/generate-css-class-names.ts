@@ -5,5 +5,5 @@ export const generateCSSClassNames: (marker: string, count?: number) => string =
     marker,
     count = 10,
   ) {
-    return `${marker}-${random(count)}`;
+    return `${marker}_${random(count)}`;
   };
