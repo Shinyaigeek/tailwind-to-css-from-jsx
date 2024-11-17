@@ -22,6 +22,7 @@ import {
 import { filterNonTailwindDesignTokensClearly } from "../tailwind/is-tailwind-class-names-string-literal/filter-non-tailwind-design-tokens-clearly.ts";
 import { generateCSSClassNames } from "../tailwind/generate-css-class-names/generate-css-class-names.ts";
 import { Node, StringLiteral } from "npm:@babel/types";
+import { askClassNameForTargetTailwindTokens } from "../interaction/ask-class-name-for-target-tailwind-tokens/ask-class-name-for-target-tailwind-tokens.ts";
 
 export type TailwindTokensStringLiteralNodeProcessorType = (
   node: StringLiteral,
@@ -36,6 +37,8 @@ interface Props {
     typeof buildGenerateCSSContentFromTailwindToken
   >;
   askActionForInvalidToken: typeof askActionForInvalidToken;
+  askClassNameForTargetTailwindTokens:
+    typeof askClassNameForTargetTailwindTokens;
   generateCSSClassNames: typeof generateCSSClassNames;
   tailwindTokenStringLiteralNodeProcessor:
     TailwindTokensStringLiteralNodeProcessorType;
@@ -54,6 +57,8 @@ export const generateCSSContentFromJSX: (
   generateCSSContentFromTailwindToken,
   generateCSSClassNames,
   tailwindTokenStringLiteralNodeProcessor,
+  askClassNameForTargetTailwindTokens,
+  askActionForInvalidToken,
 }) {
   const astResult = parseJSX(sourceCode, isTSX(sourceFile));
   if (isErr(astResult)) {
@@ -81,7 +86,11 @@ export const generateCSSContentFromJSX: (
 
       const pseudoTokens = splitPseudoTailwindTokens(tokens);
 
-      const className = generateCSSClassNames("TODO");
+      const className = await askClassNameForTargetTailwindTokens(
+        sourceCode,
+        sourceFile,
+        node,
+      ) ?? generateCSSClassNames("TODO");
 
       for (
         const [pseudoToken, tailwindTokens] of Object.entries(pseudoTokens)
