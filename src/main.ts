@@ -44,7 +44,7 @@ const cssContentResult = await generateCSSContentFromJSX({
 const cssContent = unwrapOk(cssContentResult);
 
 if (cssContent.content.length > 1) {
-  Deno.writeTextFile("hoge.module.css", cssContent.content);
+  Deno.writeTextFile(sourceFile.replace(".ts", ".module.css"), cssContent.content);
   const jsx = generate.default(cssContent.jsxAst);
-  Deno.writeTextFile("hoge.tsx", jsx.code);
+  Deno.writeTextFile(sourceFile, jsx.code);
 }
