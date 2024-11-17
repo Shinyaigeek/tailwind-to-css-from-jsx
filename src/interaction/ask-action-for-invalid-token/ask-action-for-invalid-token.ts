@@ -1,6 +1,6 @@
 import { StringLiteral } from "npm:@babel/types";
 
-enum ActionForInvalidToken {
+export enum ActionForInvalidToken {
   Skip = "Skip",
   Mark = "Mark",
   Reject = "Reject",
