@@ -66,7 +66,7 @@ export const generateCSSContentFromJSX: (
   const walkedAst = await walkASTAsync(ast, {
     enter: async function (allNode, parent) {
       if (allNode.type !== "StringLiteral") {
-        this.skip();
+        return;
       }
 
       const node = allNode as StringLiteral;
@@ -106,6 +106,7 @@ export const generateCSSContentFromJSX: (
             const action = await askActionForInvalidToken(
               cssContentError.token,
               sourceCode,
+              sourceFile,
               node,
             );
 

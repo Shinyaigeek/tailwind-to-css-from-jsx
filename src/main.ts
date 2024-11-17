@@ -7,6 +7,7 @@ import { generateCSSClassNames } from "./tailwind/generate-css-class-names/gener
 import { askActionForInvalidToken } from "./interaction/ask-action-for-invalid-token/ask-action-for-invalid-token.ts";
 import { convertTailwindTokenStringLiteralNodeToCSSModulesStyle } from "./css-modules/convert-tailwind-token-string-literal-node-to-css-modules-style/convert-tailwind-token-string-literal-node-to-css-modules-style.ts";
 import generate from "npm:@babel/generator";
+import { join } from '@std/path';
 
 const targetFile = Deno.args[0];
 
@@ -26,10 +27,11 @@ const generateCSSContentFromTailwindToken =
   buildGenerateCSSContentFromTailwindToken(tailwindConfig);
 
 const sourceFileText = await Deno.readTextFile(targetFile);
+const sourceFile = join(Deno.cwd(), targetFile);
 
 const cssContentResult = await generateCSSContentFromJSX({
   sourceCode: sourceFileText,
-  sourceFile: targetFile,
+  sourceFile,
   generateCSSContentFromTailwindToken,
   generateCSSClassNames,
   askActionForInvalidToken,

@@ -10,10 +10,12 @@ export enum ActionForInvalidToken {
 export const askActionForInvalidToken: (
   token: string,
   sourceFileText: string,
+  sourceFilePath: string,
   node: StringLiteral,
 ) => Promise<ActionForInvalidToken> = async function (
   token,
   sourceFileText,
+  sourceFilePath,
   node,
 ) {
   const targetLine = (node.loc?.start.line ?? 0) - 1;
@@ -33,6 +35,8 @@ export const askActionForInvalidToken: (
   console.log(`${targetLine + 1}:${sourceFileTextSplitted[targetLine + 1]}`);
   console.log(`${targetLine + 2}:${sourceFileTextSplitted[targetLine + 2]}`);
 
+  console.log("----source file----");
+  console.log(`${sourceFilePath}:${targetLine + 1}:${node.loc?.start.column}`);
   console.log("-------------------");
 
   let action = "";
