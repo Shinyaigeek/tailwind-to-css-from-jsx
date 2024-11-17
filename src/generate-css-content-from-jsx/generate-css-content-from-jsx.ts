@@ -2,6 +2,7 @@ import { isTSX } from "../jsx/is-tsx/is-tsx.ts";
 import { parseJSX } from "../jsx/parser/parse.ts";
 import { buildGenerateCSSContentFromTailwindToken } from "../tailwind/build-generate-css-content-from-tailwind-token/build-generate-css-content-from-tailwind-token.ts";
 import {
+  createErr,
   createOk,
   isErr,
   isOk,
@@ -9,7 +10,7 @@ import {
   unwrapErr,
   unwrapOk,
 } from "npm:option-t/plain_result";
-import { babelParse, walkASTAsync } from "@sxzz/ast-kit";
+import { walkASTAsync } from "@sxzz/ast-kit";
 import {
   ActionForInvalidToken,
   askActionForInvalidToken,
@@ -42,7 +43,7 @@ interface Props {
 
 interface CSSContent {
   content: string;
-  jsxAst: ReturnType<typeof babelParse>;
+  jsxAst: Node;
 }
 
 export const generateCSSContentFromJSX: (
@@ -63,10 +64,12 @@ export const generateCSSContentFromJSX: (
 
   let cssContent = "";
   const walkedAst = await walkASTAsync(ast, {
-    enter: async function (node, parent) {
-      if (node.type !== "StringLiteral") {
-        return undefined;
+    enter: async function (allNode, parent) {
+      if (allNode.type !== "StringLiteral") {
+        this.skip();
       }
+
+      const node = allNode as StringLiteral;
 
       const tokens = node.value.split(" ").filter((token) => {
         return filterNonTailwindDesignTokensClearly(token);
@@ -144,6 +147,10 @@ export const generateCSSContentFromJSX: (
       }
     },
   });
+
+  if (walkedAst === null) {
+    return createErr(new Error("walkedAst is null"));
+  }
 
   return createOk({
     content: cssContent,
