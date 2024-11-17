@@ -105,6 +105,7 @@ export const pseudoTailwindTokenMaps = {
   ...attributesTailwindTokenMaps,
   ...directionAttributesTailwindTokenMaps,
   ...openAttributeTailwindTokenMaps,
+  __NON_PSEUDO: "",
 } as const;
 
 export const splitPseudoTailwindTokens: (
@@ -113,14 +114,25 @@ export const splitPseudoTailwindTokens: (
   tokens,
 ) {
   return tokens.reduce((acc, token) => {
+    if (token.includes(":") === false) {
+      if (acc.__NON_PSEUDO) {
+        acc.__NON_PSEUDO.push(token);
+      } else {
+        acc.__NON_PSEUDO = [token];
+      }
+
+      return acc;
+    }
     const [key, value] = token.split(":") as [
       keyof typeof pseudoTailwindTokenMaps,
       string,
     ];
-    if (acc[key]) {
-      acc[key].push(value);
-    } else {
-      acc[key] = [value];
+    if (Object.keys(pseudoTailwindTokenMaps).includes(key)) {
+      if (acc[key]) {
+        acc[key].push(value);
+      } else {
+        acc[key] = [value];
+      }
     }
     return acc;
   }, {} as Record<keyof typeof pseudoTailwindTokenMaps, string[]>);
