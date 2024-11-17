@@ -22,8 +22,8 @@ interface Props {
   generateCSSContentFromTailwindToken: ReturnType<
     typeof buildGenerateCSSContentFromTailwindToken
   >;
-  askActionForInvalidToken: ReturnType<typeof askActionForInvalidToken>;
-  generateCSSClassName: typeof generateCSSClassNames;
+  askActionForInvalidToken: typeof askActionForInvalidToken;
+  generateCSSClassNames: typeof generateCSSClassNames;
 }
 
 export const generateCSSContentFromJSX: (
@@ -32,7 +32,7 @@ export const generateCSSContentFromJSX: (
   sourceCode,
   sourceFile,
   generateCSSContentFromTailwindToken,
-  generateCSSClassName,
+  generateCSSClassNames,
 }) {
   const astResult = parseJSX(sourceCode, isTSX(sourceFile));
   if (isErr(astResult)) {
@@ -58,7 +58,7 @@ export const generateCSSContentFromJSX: (
 
       const pseudoTokens = splitPseudoTailwindTokens(tokens);
 
-      const className = generateCSSClassName("TODO");
+      const className = generateCSSClassNames("TODO");
 
       for (
         const [pseudoToken, tailwindTokens] of Object.entries(pseudoTokens)
