@@ -42,5 +42,5 @@ const cssContent = unwrapOk(cssContentResult);
 if (cssContent.content.length > 1) {
   Deno.writeTextFile("hoge.module.css", cssContent.content);
   const jsx = generate.default(cssContent.jsxAst);
-  Deno.writeTextFile("hoge.jsx", jsx.code);
+  Deno.writeTextFile("hoge.tsx", jsx.code);
 }

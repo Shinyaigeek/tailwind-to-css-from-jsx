@@ -63,7 +63,7 @@ export const generateCSSContentFromJSX: (
 
   let cssContent = "";
   const walkedAst = await walkASTAsync(ast, {
-    enter: async (node, parent) => {
+    enter: async function (node, parent) {
       if (node.type !== "StringLiteral") {
         return undefined;
       }
@@ -132,13 +132,14 @@ export const generateCSSContentFromJSX: (
         cssContentInThisBlock += cssContentOks.join("\n");
 
         if (todoMarkContents.length > 0 || cssContentInThisBlock.length > 0) {
-          cssContent +=
-            `.${className}${pseudoSuffix} {\n${cssContentInThisBlock}\n}\n`;
-          node = tailwindTokenStringLiteralNodeProcessor(
+          cssContent += `.${className}${pseudoSuffix} {\n/** TODO: ${
+            todoMarkContents.join(",")
+          } */\n${cssContentInThisBlock}\n}\n`;
+          this.replace(tailwindTokenStringLiteralNodeProcessor(
             node,
             parent,
             className,
-          ) as StringLiteral;
+          ));
         }
       }
     },
