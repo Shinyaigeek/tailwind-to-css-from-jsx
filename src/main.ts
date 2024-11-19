@@ -13,7 +13,8 @@ import { askClassNameForTargetTailwindTokens } from "./interaction/ask-class-nam
 const targetFile = Deno.args[0];
 
 if (!targetFile) {
-  throw new Error("Please provide a target file");
+  console.error("%cPlease provide a target file", "color: red");
+  Deno.exit(1);
 }
 
 const flags = parseArgs(Deno.args.slice(1), {
