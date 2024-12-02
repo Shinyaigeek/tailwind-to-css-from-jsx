@@ -16,6 +16,7 @@ import {
   askActionForInvalidToken,
 } from "../interaction/ask-action-for-invalid-token/ask-action-for-invalid-token.ts";
 import {
+  mediaQueriesTailwindTokenMaps,
   pseudoTailwindTokenMaps,
   splitPseudoTailwindTokens,
 } from "../tailwind/split-psedou-tailwind-tokens/split-psedou-tailwind-tokens.ts";
@@ -98,6 +99,7 @@ export const generateCSSContentFromJSX: (
         // TODO: more type safely
         // @ts-ignore
         const pseudoSuffix = pseudoTailwindTokenMaps[pseudoToken];
+        const isMediaQuerySuffix = pseudoToken in mediaQueriesTailwindTokenMaps;
         const cssContentResults = tailwindTokens.map((token) => {
           return generateCSSContentFromTailwindToken(token);
         });
@@ -139,18 +141,29 @@ export const generateCSSContentFromJSX: (
         const cssContentOks = cssContentResults.filter((result) => {
           return isOk(result);
         }).map((result) => {
-          return unwrapOk(result);
+          return unwrapOk(result).trim();
         });
 
-        cssContentInThisBlock += cssContentOks.join("");
+        cssContentInThisBlock += cssContentOks.join("\n");
 
         if (todoMarkContents.length > 0 || cssContentInThisBlock.length > 0) {
           const todoMarkContentsString = todoMarkContents.length > 0
             ? `/** TODO: ${todoMarkContents.join(",")} */\n`
             : "";
 
+          if (isMediaQuerySuffix) {
+            cssContent += `${pseudoSuffix} {\n.${className}`;
+          } else {
+            cssContent += `.${className}${pseudoSuffix}`;
+          }
+
           cssContent +=
-            `.${className}${pseudoSuffix} {\n${todoMarkContentsString}\n${cssContentInThisBlock}\n}\n`;
+            `{\n${todoMarkContentsString}\n${cssContentInThisBlock}\n}\n`;
+
+          if (isMediaQuerySuffix) {
+            cssContent += "\n}";
+          }
+
           this.replace(tailwindTokenStringLiteralNodeProcessor(
             node,
             parent,
