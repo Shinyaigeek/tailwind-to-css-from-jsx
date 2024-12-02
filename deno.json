@@ -1,6 +1,6 @@
 {
   "name": "@shinyaigeek/tailwindcss-to-css-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "exports": "./src/main.ts",
   "license": "MIT",
   "imports": {
