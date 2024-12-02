@@ -46,7 +46,7 @@ const cssContent = unwrapOk(cssContentResult);
 
 if (cssContent.content.length > 1) {
   Deno.writeTextFile(
-    sourceFile.replace(".ts", ".module.css"),
+    sourceFile.replace(".tsx", ".module.css"),
     cssContent.content,
   );
   const jsx = generate.default(cssContent.jsxAst);
