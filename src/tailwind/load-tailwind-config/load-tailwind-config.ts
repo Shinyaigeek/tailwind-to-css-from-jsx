@@ -6,7 +6,7 @@ export const loadTailwindConfig: (p: string) => Promise<Result<Config, Error>> =
   async function (p) {
     const absPath = join(Deno.cwd(), p);
     try {
-      return createOk(await import(absPath));
+      return createOk(await import(`file://${absPath}`));
     } catch (e) {
       return createErr(
         new Error(`Failed to load Tailwind config from ${absPath}: ${e}`),
