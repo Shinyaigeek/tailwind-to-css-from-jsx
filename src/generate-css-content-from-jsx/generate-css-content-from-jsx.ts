@@ -142,12 +142,15 @@ export const generateCSSContentFromJSX: (
           return unwrapOk(result);
         });
 
-        cssContentInThisBlock += cssContentOks.join("\n");
+        cssContentInThisBlock += cssContentOks.join("");
 
         if (todoMarkContents.length > 0 || cssContentInThisBlock.length > 0) {
-          cssContent += `.${className}${pseudoSuffix} {\n/** TODO: ${
-            todoMarkContents.join(",")
-          } */\n${cssContentInThisBlock}\n}\n`;
+          const todoMarkContentsString = todoMarkContents.length > 0
+            ? `/** TODO: ${todoMarkContents.join(",")} */\n`
+            : "";
+
+          cssContent +=
+            `.${className}${pseudoSuffix} {\n${todoMarkContentsString}\n${cssContentInThisBlock}\n}\n`;
           this.replace(tailwindTokenStringLiteralNodeProcessor(
             node,
             parent,
