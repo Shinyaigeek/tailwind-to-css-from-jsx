@@ -27,14 +27,19 @@
     "npm:@babel/types@*": "7.26.0",
     "npm:@babel/types@7.26.0": "7.26.0",
     "npm:@babel/types@^7.26.0": "7.26.0",
+    "npm:@tailwindcss/forms@*": "0.5.9_tailwindcss@3.3.2__postcss@8.4.31",
+    "npm:@tailwindcss/line-clamp@*": "0.4.4_tailwindcss@3.3.2__postcss@8.4.31",
     "npm:@types/node@*": "22.5.4",
+    "npm:@ubie/design-tokens@*": "0.1.4",
     "npm:estree-walker@^3.0.3": "3.0.3",
     "npm:option-t@*": "50.0.0",
     "npm:option-t@50.0": "50.0.0",
     "npm:option@*": "0.2.4",
     "npm:pathe@^1.1.2": "1.1.2",
     "npm:tailwindcss@*": "3.3.2_postcss@8.4.31",
-    "npm:tw-to-css@*": "0.0.12_postcss@8.4.31"
+    "npm:tailwindcss@3.3.2": "3.3.2_postcss@8.4.31",
+    "npm:tw-to-css@*": "0.0.12_postcss@8.4.31",
+    "npm:tw-to-css@0.0.12": "0.0.12_postcss@8.4.31"
   },
   "jsr": {
     "@std/assert@0.224.0": {
@@ -212,6 +217,19 @@
     "@pkgjs/parseargs@0.11.0": {
       "integrity": "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="
     },
+    "@tailwindcss/forms@0.5.9_tailwindcss@3.3.2__postcss@8.4.31": {
+      "integrity": "sha512-tM4XVr2+UVTxXJzey9Twx48c1gcxFStqn1pQz0tRsX8o3DvxhN5oY5pvyAbUx7VTaZxpej4Zzvc6h+1RJBzpIg==",
+      "dependencies": [
+        "mini-svg-data-uri",
+        "tailwindcss"
+      ]
+    },
+    "@tailwindcss/line-clamp@0.4.4_tailwindcss@3.3.2__postcss@8.4.31": {
+      "integrity": "sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==",
+      "dependencies": [
+        "tailwindcss"
+      ]
+    },
     "@types/estree@1.0.6": {
       "integrity": "sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw=="
     },
@@ -220,6 +238,9 @@
       "dependencies": [
         "undici-types"
       ]
+    },
+    "@ubie/design-tokens@0.1.4": {
+      "integrity": "sha512-7D7Ej0cpKDWDVyW9yWX4C1VKuvp6FVKQsoFhM1rdb/Z6RotrFW5nigbPufWBhZSew76WJuKOv6bh7Z4wGTSRJQ=="
     },
     "ansi-regex@5.0.1": {
       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
@@ -473,6 +494,9 @@
         "braces",
         "picomatch"
       ]
+    },
+    "mini-svg-data-uri@1.4.4": {
+      "integrity": "sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg=="
     },
     "minimatch@9.0.5": {
       "integrity": "sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==",
