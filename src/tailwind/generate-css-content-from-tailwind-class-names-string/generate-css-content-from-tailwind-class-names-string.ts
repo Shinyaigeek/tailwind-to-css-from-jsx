@@ -1,4 +1,4 @@
-import { Result } from "npm:option-t/plain_result";
+import { Result } from "option-t/plain_result";
 import { filterNonTailwindDesignTokensClearly } from "../is-tailwind-class-names-string-literal/filter-non-tailwind-design-tokens-clearly.ts";
 import {
   buildGenerateCSSContentFromTailwindToken,

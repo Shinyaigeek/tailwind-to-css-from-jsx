@@ -1,5 +1,5 @@
-import { babelParse } from "jsr:@sxzz/ast-kit";
-import { createErr, createOk, Result } from "npm:option-t/plain_result";
+import { babelParse } from "@sxzz/ast-kit";
+import { createErr, createOk, Result } from "option-t/plain_result";
 
 export const parseJSX: (
   code: string,

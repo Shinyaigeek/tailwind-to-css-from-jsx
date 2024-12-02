@@ -2,7 +2,7 @@ import { assertEquals } from "jsr:@std/assert";
 import { createAssertSnapshot } from "jsr:@std/testing/snapshot";
 import { stripAnsiCode } from "jsr:@std/fmt/colors";
 import { parseJSX } from "./parse.ts";
-import { isOk, unwrapOk } from "npm:option-t/plain_result";
+import { isOk, unwrapOk } from "option-t/plain_result";
 
 const assertSnapshot = createAssertSnapshot({
   dir: ".snaps",

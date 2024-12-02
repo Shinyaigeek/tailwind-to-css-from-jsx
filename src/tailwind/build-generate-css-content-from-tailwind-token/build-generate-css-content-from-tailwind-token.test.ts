@@ -1,9 +1,9 @@
 import { buildGenerateCSSContentFromTailwindToken } from "./build-generate-css-content-from-tailwind-token.ts";
 import { assertEquals } from "jsr:@std/assert";
-import { isOk } from "npm:option-t/plain_result";
+import { isOk } from "option-t/plain_result";
 import { createAssertSnapshot } from "jsr:@std/testing/snapshot";
 import { stripAnsiCode } from "@std/fmt/colors";
-import { unwrapOk } from "npm:option-t/plain_result";
+import { unwrapOk } from "option-t/plain_result";
 
 const assertSnapshot = createAssertSnapshot({
   dir: ".snaps",

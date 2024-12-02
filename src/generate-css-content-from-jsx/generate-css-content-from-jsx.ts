@@ -9,7 +9,7 @@ import {
   Result,
   unwrapErr,
   unwrapOk,
-} from "npm:option-t/plain_result";
+} from "option-t/plain_result";
 import { walkASTAsync } from "@sxzz/ast-kit";
 import {
   ActionForInvalidToken,
@@ -21,7 +21,7 @@ import {
 } from "../tailwind/split-psedou-tailwind-tokens/split-psedou-tailwind-tokens.ts";
 import { filterNonTailwindDesignTokensClearly } from "../tailwind/is-tailwind-class-names-string-literal/filter-non-tailwind-design-tokens-clearly.ts";
 import { generateCSSClassNames } from "../tailwind/generate-css-class-names/generate-css-class-names.ts";
-import { Node, StringLiteral } from "npm:@babel/types";
+import { Node, StringLiteral } from "@babel/types";
 import { askClassNameForTargetTailwindTokens } from "../interaction/ask-class-name-for-target-tailwind-tokens/ask-class-name-for-target-tailwind-tokens.ts";
 
 export type TailwindTokensStringLiteralNodeProcessorType = (

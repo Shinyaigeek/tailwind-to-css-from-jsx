@@ -1,6 +1,6 @@
-import { tailwindToCSS, twi as plainTwi } from "npm:tw-to-css";
-import type { Config } from "npm:tailwindcss";
-import { createErr, createOk, Result } from "npm:option-t/plain_result";
+import { tailwindToCSS, twi as plainTwi } from "tw-to-css";
+import type { Config } from "tailwindcss";
+import { createErr, createOk, Result } from "option-t/plain_result";
 
 export class UnexpectedTailwindTokenError extends Error {
   constructor(public token: string) {

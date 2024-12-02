@@ -1,6 +1,6 @@
-import { createErr, createOk, Result } from "npm:option-t/plain_result";
-import type { Config } from "npm:tailwindcss";
-import { join } from "jsr:@std/path";
+import { createErr, createOk, Result } from "option-t/plain_result";
+import type { Config } from "tailwindcss";
+import { join } from "@std/path";
 
 export const loadTailwindConfig: (p: string) => Promise<Result<Config, Error>> =
   async function (p) {

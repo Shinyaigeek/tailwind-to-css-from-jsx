@@ -1,4 +1,4 @@
-import random from "jsr:@yuhenabc/random";
+import random from "@yuhenabc/random";
 
 export const generateCSSClassNames: (marker: string, count?: number) => string =
   function (
