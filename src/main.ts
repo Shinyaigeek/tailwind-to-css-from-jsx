@@ -1,6 +1,6 @@
 import { parseArgs } from "@std/cli";
 import { loadTailwindConfig } from "./tailwind/load-tailwind-config/load-tailwind-config.ts";
-import { unwrapOk } from "option-t/plain_result";
+import { isOk, unwrapErr, unwrapOk } from "option-t/plain_result";
 import { buildGenerateCSSContentFromTailwindToken } from "./tailwind/build-generate-css-content-from-tailwind-token/build-generate-css-content-from-tailwind-token.ts";
 import { generateCSSContentFromJSX } from "./generate-css-content-from-jsx/generate-css-content-from-jsx.ts";
 import { generateCSSClassNames } from "./tailwind/generate-css-class-names/generate-css-class-names.ts";
@@ -9,6 +9,7 @@ import { convertTailwindTokenStringLiteralNodeToCSSModulesStyle } from "./css-mo
 import generate from "@babel/generator";
 import { join } from "@std/path";
 import { askClassNameForTargetTailwindTokens } from "./interaction/ask-class-name-for-target-tailwind-tokens/ask-class-name-for-target-tailwind-tokens.ts";
+import { Config } from "tailwindcss";
 
 const targetFile = Deno.args[0];
 
@@ -21,9 +22,17 @@ const flags = parseArgs(Deno.args.slice(1), {
   string: ["config"],
 });
 
-const tailwindConfig = flags.config
-  ? unwrapOk(await loadTailwindConfig(flags.config))
-  : undefined;
+let tailwindConfig: Config | undefined = undefined;
+
+if (flags.config) {
+  const tailwindConfigResult = await loadTailwindConfig(flags.config);
+
+  if (isOk(tailwindConfigResult)) {
+    tailwindConfig = unwrapOk(tailwindConfigResult);
+  } else {
+    throw unwrapErr(tailwindConfigResult);
+  }
+}
 
 const generateCSSContentFromTailwindToken =
   buildGenerateCSSContentFromTailwindToken(tailwindConfig);
